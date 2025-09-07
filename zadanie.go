@@ -20,10 +20,16 @@ func main() {
 	fmt.Scan(&choice)
 	var h,w,i int
 	if choice == 1 {
-
+		fmt.Print("h ")
 		fmt.Scan(&h)
+		fmt.Print("w ")
 		fmt.Scan(&w)
+		fmt.Print("i ")
 		fmt.Scan(&i)
+		if i >= h*w {
+			fmt.Println("Too large")
+			return
+		}
 		EncodeBoard(h,w)
 		fmt.Println()
 
