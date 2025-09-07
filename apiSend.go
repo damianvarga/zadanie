@@ -12,15 +12,13 @@ import (
 func Send(height int, width int, result string) {
 	url := "https://zadanie.openmed.sk/challenge-me-easy"
 	table_hash := EncodeBoard(height, width)
-	fmt.Println("hash")
-	fmt.Println(table_hash)
+	
 	// Dáta, ktoré chceš poslať
 	payload := map[string]string{
-		"uuid": "9556a3a9-85d0-4906-af1b-9d3391e67d87",
+		"uuid": "9556a3a9-85d0-4906-af1b-9d3391e67e24",
 		"result":    result,
 		"table_hash": table_hash,
 	}
-
 	// Prevod Go mapy/štruktúry na JSON
 	jsonData, err := json.Marshal(payload)
 	if err != nil {

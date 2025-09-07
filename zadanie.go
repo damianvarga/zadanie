@@ -9,7 +9,7 @@ import (
 
 
 type PartialResponse struct {
-    SetX string     `json:"set_x"`
+    SetX string  `json:"set_x"`
     SetY string	 `json:"set_y"`
     SetZ string	 `json:"set_z"`
 }
@@ -38,28 +38,23 @@ func main() {
 		}
 
 		var err error
-		h, err = strconv.Atoi(resp.SetX)
-		w, err = strconv.Atoi(resp.SetY)
+		h, err = strconv.Atoi(resp.SetY)
+		w, err = strconv.Atoi(resp.SetX)
 		i, err = strconv.Atoi(resp.SetZ)
 		if err != nil {
 			log.Fatal(err)
 		}
-		fmt.Println(h)
-		fmt.Println(w)
-		fmt.Println(i)
-		// h, _ = strconv.Atoi(body["set_x"])
-		// w, _ = strconv.Atoi(body["set_y"])
-		// i, _ = strconv.Atoi(body["set_z"])
-		// return
-
+		
 	}
 	
 	resultString := intsToCSV(algorithm(h,w,i))
+	fmt.Print("result ")
 	fmt.Print(resultString)
 	fmt.Println()
 	if choice == 2 {
 		Send(h, w, resultString)
 	}
+	EncodeBoard(w,h)
 	return 
 }
 
@@ -84,6 +79,7 @@ func algorithm(h,w,i int) []int {
 			ni := (row + i/w) % (h)
 			nj := (col + i%w) % (w)
 			neighbor := ni*w+nj
+
 			// osetrenie okrajov
 			// vrchny a spodny okraj
 			if h != 1 {
