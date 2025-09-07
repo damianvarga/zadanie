@@ -18,9 +18,10 @@ func EncodeBoard(height int, width int) string {
 	return base64Hash
 }
 
-
+// Funkcia na vytvorenie stringu, ktory reprezentuje tabulku s presahmi
 func createBoard(height int, width int) string {
 
+	// prvy riadok 
 	data := strconv.Itoa(height*width-1)
 	data += ","
 	for w := 0; w < width; w++ {
@@ -29,6 +30,8 @@ func createBoard(height int, width int) string {
 	}
 	data += strconv.Itoa(width*(height-1))
 	data += "\n"
+
+	// druhy az predposledny riadok
 	for h := 0; h < height; h++ {
 		data += strconv.Itoa(h*width+width-1)
 		data += ","
@@ -39,6 +42,8 @@ func createBoard(height int, width int) string {
 		data += strconv.Itoa(h*width)
 		data += "\n"
 	}
+	
+	// posledny riadok
 	data += strconv.Itoa(width-1)
 	data += ","
 	for w := 0; w < width; w++ {

@@ -15,7 +15,7 @@ func Send(height int, width int, result string) {
 	
 	// Dáta, ktoré chceš poslať
 	payload := map[string]string{
-		"uuid": "9556a3a9-85d0-4906-af1b-9d3391e67e24",
+		"uuid": "9556a3a9-85d0-4906-af1b-9d3391e67e29",
 		"result":    result,
 		"table_hash": table_hash,
 	}

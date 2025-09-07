@@ -31,7 +31,8 @@ func main() {
 		body := Call()
 		
 		// generovane AI - chcel som, aby mi dal kod, kde z JSONu vo forme []byte ziskam hodnoty h,w,i
-		// Tu som pouzival AI celkom dost - kopiroval som nejake casti kodu a snazil som sa 
+		// Tu som pouzival AI celkom dost; kopiroval som aj par riadkov kodu  
+		// spracovanie udajov z API
 		var resp PartialResponse
 		if err := json.Unmarshal(body, &resp); err != nil {
 			fmt.Println("Error:", err)
@@ -51,14 +52,16 @@ func main() {
 	fmt.Print("result ")
 	fmt.Print(resultString)
 	fmt.Println()
+
+	// ak ideme cez API, odosli vysledok
 	if choice == 2 {
 		Send(h, w, resultString)
 	}
-	EncodeBoard(w,h)
 	return 
 }
 
 // generovane AI
+// konverzia pola cisel na string cisel oddelenych ciarkami
 func intsToCSV(nums []int) string {
 	strs := make([]string, len(nums))
 	for i, n := range nums {
@@ -67,6 +70,7 @@ func intsToCSV(nums []int) string {
 	return strings.Join(strs, ",")
 }
 
+// algoritmus na najdenie susedov
 func algorithm(h,w,i int) []int {
 	arr := make([]int, 0)
 	// AI vygenerovala zakladny algoritmus - cykly + prvu podmienku, ni,nj,neighbor,arr
