@@ -4,18 +4,21 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
+	"io/ioutil"
 	"log"
 	"net/http"
 )
 // AI generovane
-func main() {
+func Send(height int, width int, result string) {
 	url := "https://zadanie.openmed.sk/challenge-me-easy"
-
+	table_hash := EncodeBoard(height, width)
+	fmt.Println("hash")
+	fmt.Println(table_hash)
 	// Dáta, ktoré chceš poslať
 	payload := map[string]string{
-		"uuid": "9556a3a9-85d0-4906-af1b-9d3391e67d68",
-		"result":    "22,23,18,28,24,34,35,30",
-		"table_hash": "/5n2zQS74JggOKVd+UojTLaepaCHp6YcQP5Ccy4KYHM=",
+		"uuid": "9556a3a9-85d0-4906-af1b-9d3391e67d87",
+		"result":    result,
+		"table_hash": table_hash,
 	}
 
 	// Prevod Go mapy/štruktúry na JSON
@@ -39,6 +42,14 @@ func main() {
 	}
 	defer resp.Body.Close()
 
+	// Telo odpovede
+	body, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		log.Fatalf("Error reading response body: %v", err)
+	}
+
 	// Výpis statusu odpovede
 	fmt.Println("Status:", resp.Status)
+	fmt.Println("Response:", string(body))
+
 }
