@@ -19,6 +19,10 @@ func main() {
 	fmt.Println("If you want to input values manually, enter 1.\nIf you want to access the API, enter 2.")
 	fmt.Scan(&choice)
 	var h,w,i int
+	for choice != 2 && choice != 1 {
+		fmt.Println("Enter 1 or 2")
+		fmt.Scan(&choice)
+	}
 	if choice == 1 {
 		fmt.Print("h ")
 		fmt.Scan(&h)
